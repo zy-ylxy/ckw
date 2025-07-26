@@ -99,7 +99,6 @@
       .section {
         position: relative; /* 为伪元素定位提供基准 */
         display: flex; /* 启用Flex布局 */
-        align-items: center; /* 垂直居中 */
         justify-content: space-between; /* 两端对齐 */
         width: 100%; /* 确保宽度占满 */
         margin-bottom: 20px;
@@ -108,6 +107,7 @@
       }
       .section:nth-child(3) {
         /* 设置较大的间隔虚线（模拟） */
+        position: relative;
         border-bottom: none;
         background: linear-gradient(to right, #eee 50%, transparent 50%)
           repeat-x bottom;
@@ -119,11 +119,11 @@
       .section:nth-child(3)::after {
         content: '';
         position: absolute;
-        width: 36px;
-        height: 36px;
+        width: 32px;
+        height: 32px;
         background: #f7f7f7;
         border-radius: 50%; /* 圆形 */
-        bottom: -18px; /* 定位到虚线边框中间 */
+        bottom: -14px; /* 定位到虚线边框中间 */
       }
 
       /* 左侧圆形 */
@@ -137,23 +137,28 @@
         z-index: 999;
       }
 
-      .section:nth-child(5) {
+      .success {
+        display: none;
+        position: absolute;
+        bottom: -40px; /* 定位到虚线边框中间 */
+        right: -13px;
+        width: 80px;
+        height: 80px;
+      }
+      .section:nth-child(4) {
         padding-top: 30px;
       }
-      .section:nth-child(7) {
+      .section:nth-child(6) {
         margin-bottom: 0;
       }
 
       .section-title {
         flex-shrink: 0; /* 标题不压缩 */
         font-weight: bold; /* 加粗标题 */
-        width: 100px; /* 固定标题宽度（可选） */
         font-size: 16px;
-        font-weight: 600;
-        margin-bottom: 8px;
       }
       .section-content {
-        font-size: 14px;
+        font-size: 16px;
       }
       .location {
         color: #2c8ded;
@@ -253,15 +258,6 @@
         font-size: 14px;
       }
 
-      .success {
-        position: absolute;
-        right: 25px;
-        bottom: 460px;
-        width: 80px;
-        height: 80px;
-        display: none;
-      }
-
       .icon_box {
         /* 关键代码 */
         display: inline-flex; /* 或 flex */
@@ -344,11 +340,17 @@
         <div class="form-group">
           <label for="reservation-time">时间：</label>
           <select id="reservation-time">
-            <option value="10:00-10:59">10:00-10:59</option>
+            <option value="10:00-10:59" selected>10:00-10:59</option>
             <option value="11:00-11:59">11:00-11:59</option>
             <option value="13:00-13:59">13:00-13:59</option>
             <option value="14:00-14:59">14:00-14:59</option>
-            <option value="15:00-15:59" selected>15:00-15:59</option>
+            <option value="15:00-15:59">15:00-15:59</option>
+            <option value="15:00-15:59">16:00-18:59</option>
+            <option value="15:00-15:59">17:00-17:59</option>
+            <option value="15:00-15:59">18:00-18:59</option>
+            <option value="15:00-15:59">19:00-19:59</option>
+            <option value="15:00-15:59">20:00-20:59</option>
+            <option value="15:00-15:59">21:00-21:59</option>
           </select>
         </div>
         <button id="update-time-btn" class="btn">更新场次时间</button>
@@ -401,9 +403,9 @@
         <div class="section">
           <div class="section-title">联系人手机号</div>
           <div class="section-content">15017840837</div>
-        </div>
-        <div class="success">
-          <img src="./success.png" alt="" style="width: 100%; height: auto" />
+          <div class="success">
+            <img src="./success.png" alt="" style="width: 100%; height: auto" />
+          </div>
         </div>
 
         <div class="section">
@@ -418,12 +420,12 @@
 
         <div class="section">
           <div class="section-title">门店地址</div>
-          <i
-            class="fas fa-map-marker-alt"
-            style="color: #2c8ded; font-size: 12px"
-          ></i>
-          <div class="section-content location">
-            天河区天河路228号正佳广场1楼中庭
+          <div class="section-content location" style="text-align: right">
+            <i
+              class="fas fa-map-marker-alt"
+              style="color: #2c8ded; font-size: 12px"
+            ></i>
+            天河区天河路228号正佳广场1楼中庭111111111
           </div>
         </div>
         <div class="btn_class">
@@ -465,7 +467,6 @@
       function confirmCode() {
         const code = document.getElementById('code').value
         if (!code) {
-          alert('请输入口令码！')
           return
         }
 
@@ -474,12 +475,10 @@
 
         // 切换显示内容
         document.querySelector('.home').style.display = 'none' // 隐藏预约成功部分
+        document.querySelector('.notice').style.display = 'none' // 隐藏预约成功部分
         document.querySelector('.btn_class').style.display = 'none' // 隐藏预约成功部分
         document.querySelector('.second').style.display = 'flex' // 显示"期待见面"部分
         document.querySelector('.success').style.display = 'block' // 显示成功图标
-
-        // 可选：添加成功提示（如果需要）
-        alert('兑换成功！')
       }
 
       // 点击弹窗外部关闭
