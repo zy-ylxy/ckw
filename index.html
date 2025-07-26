@@ -158,7 +158,8 @@
         font-size: 16px;
       }
       .section-content {
-        font-size: 16px;
+        font-size: 15px;
+        text-align: right;
       }
       .location {
         color: #2c8ded;
@@ -420,7 +421,7 @@
 
         <div class="section">
           <div class="section-title">门店地址</div>
-          <div class="section-content location" style="text-align: right">
+          <div class="section-content location">
             <i
               class="fas fa-map-marker-alt"
               style="color: #2c8ded; font-size: 12px"
@@ -511,7 +512,7 @@
 
           // 更新场次时间显示
           const timeDisplay = document.querySelector(
-            '.section:nth-child(6) .section-content'
+            '.section:nth-child(5) .section-content'
           )
           timeDisplay.textContent = `${formattedDate} ${selectedTime}(UTC+8:00)`
           // 隐藏time-selector模块
